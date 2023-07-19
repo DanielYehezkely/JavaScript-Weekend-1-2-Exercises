@@ -8,7 +8,7 @@ console.log(bool(0));
 console.log(bool("hi"));
 console.log(bool(null));
 
-// Exercise 2.1
+// Exercise 2.1 ----------------------------------------------------------------------------------
 const numArray = [32, 49000, -15, 32425242, 1, 92];
 function sumOfTwo(array) {
   array = array.filter((num) => num >= 0 && Number.isInteger(num));
