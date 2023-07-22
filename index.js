@@ -21,7 +21,6 @@ function sumOfTwo(array) {
 // const sumOfTwo = (array) => {
 //     const sortedArray = array.filter(num => num >= 0 && Number.isInteger(num)).sort((a, b) => a - b);
 //     return sortedArray[0] + sortedArray[1];
-//   };  Need Explanation about the sort method in this code !!!!!!!!!
 
 console.log(sumOfTwo(numArray));
 
@@ -126,7 +125,7 @@ function mathOperator(operator, num1, num2) {
     case "**":
       return num1 ** num2;
     default:
-      return "Invalid";
+      return "Invalid Input - Please insert valid numbers and operator";
   }
 }
 
@@ -143,7 +142,7 @@ function nb_year(pO, percent, aug, p) {
     pO < 0 ||
     p < 0
   ) {
-    return "Invalid";
+    return "Invalid Input - Please insert valid numbers";
   }
   let years = 0;
   while (pO < p) {
@@ -339,42 +338,22 @@ console.log(maskify("somescertetpasswordoverhere"));
 
 //  Exercise 5.7 -----------------------------------------------------------------------------------------
 
-// function shortest(string) {
-//   if (string === "" || string === undefined) {
-//     return "invalid";
-//   }
-//   const strArr = string.split(" ");
-//   let shortestWord = strArr[0];
-//   for (let i = 1; i < strArr.length; i++) {
-//     const currentWord = strArr[i];
-//     if (currentWord.length < shortestWord.length) {
-//       shortestWord = currentWord;
-//     }
-//   }
-//   return shortestWord.length;
-// }
-
-// function shortest(string){
-//   if(string === '' || string === undefined){return 'invalid'}
-//   const strArr = string.split(" ");
-//   const shortestWord = strArr.reduce((prevWord , word) =>{return prevWord < word ? word : prevWord; }, strArr[0]);
-//   return shortestWord.length
-//  }
-
 function shortest(string) {
   if (string === "" || string === undefined) {
-    return "invalid";
+    return "Invalid Input - Please insert valid input";
   }
-  const words = string.split(" ");
-  let shortestLength = words[0].length;
-  for (let i = 1; i < words.length; i++) {
-    const currentWordLength = words[i].length;
-    if (currentWordLength < shortestLength) {
-      shortestLength = currentWordLength;
+  const strArr = string.split(" ");
+  let shortestWord = strArr[0];
+  for (let i = 1; i < strArr.length; i++) {
+    const currentWord = strArr[i];
+    if (currentWord.length < shortestWord.length) {
+      shortestWord = currentWord;
     }
   }
-  return shortestLength;
+  return shortestWord.length;
 }
+
+
 
 console.log(shortest("Th1s Task Is Pretty Fun"));
 console.log(shortest("enjoying javascript full time"));
@@ -405,7 +384,7 @@ console.log(shortest("the best transformer optimus prime"));
 
 function longestWord(string) {
   if (!string) {
-    return "invalid";
+    return "Invalid Input - Please insert valid input";
   }
 
   const wordsArr = string.split(" ");
@@ -447,7 +426,7 @@ console.log(longestWord("this ia an example sentence for testing"));
 function accumulator(string) {
   for (const char of string) {
     if (!/[A-Za-z]/.test(char)) {
-      return "Invalid Input";
+      return "Invalid Input - Please insert valid input";
     }
   }
   const charArr = string
@@ -461,62 +440,19 @@ console.log(accumulator("RqaEzty"));
 
 // Exercise 6.2 ------------------------------------------------------------------------------------
 
-// function duplicateCounter(string) {
-//   const countObjective = {};
-//   string.split("").forEach((char) => {
-//     countObjective[char] = (countObjective[char] || 0) + 1;
-//   });
-//   const countNum = Math.max(...Object.values(countObjective));
-//   const distinctChar = Object.keys(countObjective).filter(
-//     (key) => countObjective[key] === countNum
-//   );
-//   if (distinctChar.length === 1) {
-//     const countObjective2 = {};
-//     string
-//       .replaceAll(distinctChar, "")
-//       .split("")
-//       .forEach((chr) => {
-//         countObjective2[chr] = (countObjective2[chr] || 0) + 1;
-//       });
-//     const countNum2 = Math.max(...Object.values(countObjective2));
-//     if (countNum2 === 1) {
-//       return `${distinctChar.length} # ${distinctChar} occurs ${countNum} times `;
-//     }
-//     const distinctChar2 = Object.keys(countObjective).filter(
-//       (key) => countObjective[key] === countNum2
-//     );
-//     distinctChar.push(distinctChar2);
-//     return `${distinctChar.length} # ${distinctChar[0]} occurs ${countNum} times and ${distinctChar2} occurs ${countNum2} times `;
-//   }
-//   if (countNum === 1) {
-//     return "0 # no characters repeats more than once";
-//   }
-//   return `${distinctChar.length} # ${distinctChar.join(
-//     " and "
-//   )} occurs ${countNum} times `;
-// }
-// console.log(duplicateCounter("a3bcde"));
-// console.log(duplicateCounter("a333bbcde"));
-// console.log(duplicateCounter("aaa33bbbcde"));
-// console.log(duplicateCounter("indivisibility"));
-
-// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this is the result of not reading the question properly and not analyzing it ^^^^^^^^^^^^^^^^^^^^^^
 
 function countDuplicates(string) {
   const countObjective = {};
   const lowerCaseInput = string.toLowerCase();
-
   for (let char of lowerCaseInput) {
     countObjective[char] = (countObjective[char] || 0) + 1;
   }
-
   let duplicatesCount = 0;
   for (let key in countObjective) {
     if (countObjective[key] > 1) {
       duplicatesCount++;
     }
   }
-
   return duplicatesCount;
 }
 
@@ -560,14 +496,6 @@ console.log(isIsogram("moOse"));
 
 // filter method
 const exampleArray = [1, 2, 3, 4, 5];
-// const filterFunction = (array) => {
-//   const filteredArray = [];
-//   for (let i = 0; i < array.length; i++) {
-//     array[i] < 4 ? (filteredArray[i] = array[i]) : "";
-//   }
-//   return filteredArray;
-// };
-// ask for explanation ...
 
 const filterFunction = (array) => {
   const filteredArray = [];
