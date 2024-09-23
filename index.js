@@ -1,7 +1,6 @@
 // Exercise 1.1
 const bool = (value) => {
-  const isBool = value ? "yes" : "no";
-  return isBool;
+  return value ? "yes" : "no";
 };
 console.log(bool(23));
 console.log(bool(0));
@@ -10,18 +9,20 @@ console.log(bool(null));
 
 // Exercise 2.1 ----------------------------------------------------------------------------------
 const numArray = [32, 49000, -15, 32425242, 1, 92];
-function sumOfTwo(array) {
-  array = array.filter((num) => num >= 0 && Number.isInteger(num));
-  const lowestNum = Math.min(...array);
-  array.splice(array.indexOf(lowestNum), 1);
-  const lowestNum2 = Math.min(...array);
-  return lowestNum + lowestNum2;
-}
-
 // const sumOfTwo = (array) => {
-//     const sortedArray = array.filter(num => num >= 0 && Number.isInteger(num)).sort((a, b) => a - b);
-//     return sortedArray[0] + sortedArray[1];
+//   array = array.filter((num) => num >= 0 && Number.isInteger(num));
+//   const lowestNum = Math.min(...array);
+//   array.splice(array.indexOf(lowestNum), 1);
+//   const lowestNum2 = Math.min(...array);
+//   return lowestNum + lowestNum2;
+// }
 
+const sumOfTwo = (array) => {
+  const sortedArray = array
+    .filter((num) => num >= 0 && Number.isInteger(num))
+    .sort((a, b) => a - b);
+  return sortedArray[0] + sortedArray[1];
+};
 console.log(sumOfTwo(numArray));
 
 // Exercise 2.2 -------------------------------------------------------------------------------------------------------------------
@@ -71,7 +72,7 @@ console.log(findNextSquare(784));
 // Exercise 2.4 ---------------------------------------------------------------------------------------------------
 
 const uniqueArray = [1, 1, 1, 1.89, 1, 1, 1, 1, 1];
-function unique(array) {
+const unique =(array) => {
   array.sort();
   return array[0] === array[1] ? array[array.length - 1] : array[0];
 }
@@ -86,6 +87,7 @@ const summation = (int) => {
   }
   return sum;
 };
+
 // const n = 10;
 // sum = n * (n + 1) / 2;
 // console.log(sum);
@@ -98,7 +100,7 @@ console.log(summation(10));
 
 // Exercise 2.6
 
-function yearToCentry(year) {
+const  yearToCentry = (year) => {
   if (year % 100 === 0) {
     return year / 100;
   }
@@ -110,7 +112,7 @@ console.log(yearToCentry(1567));
 
 // Exercise 2.7 -----------------------------------------------------------------------------------------------------
 
-function mathOperator(operator, num1, num2) {
+const mathOperator = (operator, num1, num2) => {
   switch (operator) {
     case "+":
       return num1 + num2;
@@ -135,7 +137,7 @@ console.log(mathOperator("+", 10, 10));
 
 // Exercise 3.1 --------------------------------------------------------------------------------------------
 
-function nb_year(pO, percent, aug, p) {
+const nb_year =(pO, percent, aug, p) => {
   if (
     !Number.isInteger(aug) ||
     (percent !== null && percent < 0) ||
@@ -190,7 +192,7 @@ const busStops2 = [
 // return totalLeft
 // }
 
-function busCapacity(busStops) {
+const busCapacity = (busStops) => {
   let totalLeft = 0;
   for (const [peopleOn, peopleOff] of busStops) {
     totalLeft += peopleOn - peopleOff;
@@ -210,8 +212,7 @@ function fibonacciIterative(n) {
   let current = 1;
   for (let i = 3; i <= n; i++) {
     const next = prev + current;
-    prev = current;
-    current = next;
+    [prev, current] = [current, next];
   }
   return current;
 }
@@ -228,17 +229,18 @@ function tribonacci(signature, n) {
     return signature.slice(0, n);
   } else {
     while (signature.length < n) {
-      const nextElement = signature.slice(-3).reduce((sum, num) => sum + num, 0);
+      const nextElement = signature
+        .slice(-3)
+        .reduce((sum, num) => sum + num, 0);
       signature.push(nextElement);
     }
     return signature;
   }
 }
 
-console.log(tribonacci([1,1,1], 5));
-console.log(tribonacci([3,5,9], 8));
-console.log(tribonacci([9,17,31], 12));
-
+console.log(tribonacci([1, 1, 1], 5));
+console.log(tribonacci([3, 5, 9], 8));
+console.log(tribonacci([9, 17, 31], 12));
 
 // Exercise 5.1 ------------------------------------------------------------------------------
 
@@ -273,7 +275,7 @@ console.log(repeat_str(5, "fibonacci"));
 // }
 
 function toCamelCase(string) {
-  return string.replace(/[-_](.)/g, (_, char) => char.toUpperCase());
+  return string.replace(/[-_](.)/g, (_, char) => char.toUpperCase()); 
 }
 
 console.log(toCamelCase("The_Stealth_Warrior_of-the_Dessert"));
@@ -318,6 +320,7 @@ function nameToInitials(string) {
     .split(" ")
     .map((word) => word[0].toUpperCase())
     .join(".");
+    
 }
 
 console.log(nameToInitials("daniel yehezkely"));
@@ -353,9 +356,7 @@ function shortest(string) {
   return shortestWord.length;
 }
 
-
-
-console.log(shortest("Th1s Task Is Pretty Fun"));
+console.log(shortest("Th1s Task Is  Pretty Fun"));
 console.log(shortest("enjoying javascript full time"));
 console.log(shortest("the best transformer optimus prime"));
 
@@ -439,7 +440,6 @@ console.log(accumulator("cwAt"));
 console.log(accumulator("RqaEzty"));
 
 // Exercise 6.2 ------------------------------------------------------------------------------------
-
 
 function countDuplicates(string) {
   const countObjective = {};
@@ -530,9 +530,9 @@ console.log(mapFunction(exampleArray));
 
 // exercise 8 --------------------------------------------------------------------------------------------
 
-const findPerimeter = (length, width) => 
-Number.isInteger(length) && Number.isInteger(width) ? 
-2 * (length + width) :
-'Invalid Input - Please insert valid numbers';
+const findPerimeter = (length, width) =>
+  Number.isInteger(length) && Number.isInteger(width)
+    ? 2 * (length + width)
+    : "Invalid Input - Please insert valid numbers";
 
-console.log(findPerimeter(20,30));
+console.log(findPerimeter(20, 30));
